@@ -9,6 +9,24 @@ var RoomsView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    // populate room button with rooms on server
+    // get rooms from server
+    // iterate through each room on server and append it to select
+    Parse.readAll(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        var roomname = obj.roomname;
+        // console.log($('option:contains(' + obj.roomname + ')'));
+        $options = $('option');
+        // document.querySelector('option');
+
+        for (var i = 0; i < $options.length; i++) {
+          if (!$options[i].includes(roomname)) {
+            RoomsView.$select.append('<option value="' + obj.roomname + '">' + obj.roomname + '</option>');
+          }
+        }
+      }
+    });
   },
 
   render: function() {

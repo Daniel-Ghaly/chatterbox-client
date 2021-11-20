@@ -2,6 +2,8 @@
 // It should initialize the other parts of the application
 // and begin making requests to the Parse API for data.
 
+// document.ready - store all event listners
+
 var App = {
 
   $spinner: $('.spinner img'),
@@ -31,6 +33,7 @@ var App = {
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });
+    callback();
   },
 
   startSpinner: function() {
