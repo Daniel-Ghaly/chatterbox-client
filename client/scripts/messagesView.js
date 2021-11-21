@@ -16,7 +16,6 @@ var MessagesView = {
     // TODO: Render _all_ the messages.
 
     Parse.readAll(function(data) {
-      console.log('initialize', data);
       for (var i = 0; i < data.length; i++) {
         var obj = data[i];
         data[i].text = String(data[i].text).replaceAll('<', '&lt;');

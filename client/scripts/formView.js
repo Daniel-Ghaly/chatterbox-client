@@ -15,7 +15,7 @@ var FormView = {
     event.preventDefault();
     var message = $('#message').val();
     var username = App.username;
-    var roomName = 'test';
+    var roomName = RoomsView.$select.val();
     var obj = {
       text: message,
       username: username,
