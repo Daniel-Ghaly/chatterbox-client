@@ -84,8 +84,20 @@ form input[type=text] {
     padding: 10px;
 }
 
-.friend {
+/* .friend {
     color: #fff;
     background-color: #0090da;
+} */
+
+#friends {
+    padding-left: 0px;
+
 }
 
+ul {
+    list-style-type: none;
+}
+
+.bold {
+    font-weight: bold;
+}

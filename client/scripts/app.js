@@ -23,12 +23,24 @@ var App = {
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+
+    setInterval(App.fetch, 10000);
+
+
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+      // if ($( '#select option:selected' ).text() !== 'All Rooms') {
+      //   RoomsView.renderRoom();
+      // } else {
+      //   MessagesView.render();
+      // }
+      MessagesView.render();
+      // RoomsView.renderRoom();
+
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.

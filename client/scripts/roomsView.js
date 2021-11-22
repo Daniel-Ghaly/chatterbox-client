@@ -59,6 +59,8 @@ var RoomsView = {
           data[i].roomname = String(data[i].roomname).replaceAll('\'', '&#x27;');
           var template = MessageView.render(obj);
           MessagesView.$chats.append(template);
+          var $usernames = $('.usernames');
+
         }
       }
     });

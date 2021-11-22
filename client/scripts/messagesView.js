@@ -10,11 +10,32 @@ var MessagesView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     MessagesView.render();
+    var $usernames = $('.usernames');
+    // var $friends = $('#friends');
+    var friendsArr = [];
+    MessagesView.$chats.on( 'click', '.username', function( event ) {
+      console.log($(event.target).text());
+      var $friends = $('#friends');
+      if (friendsArr.length === 0 ) {
+        friendsArr.push($(event.target).text());
+        $friends.append('<li>' + friendsArr[0] + '</li> ');
+      }
+      for (var i = 0; i < $friends.children().length; i++) {
+        if (friendsArr.indexOf($(event.target).text()) === -1) {
+          friendsArr.push($(event.target).text());
+          $friends.append('<li>' + $(event.target).text() + '</li> ');
+        }
+      }
+      // for (var i = 0; i < friendsArr.length; i++) {
+
+      // }
+    });
+
   },
 
   render: function() {
     // TODO: Render _all_ the messages.
-
+    MessagesView.$chats.html('');
     Parse.readAll(function(data) {
       for (var i = 0; i < data.length; i++) {
         var obj = data[i];
@@ -33,8 +54,20 @@ var MessagesView = {
         data[i].roomname = String(data[i].roomname).replaceAll('>', '%gt;');
         data[i].roomname = String(data[i].roomname).replaceAll('"', '&quot;');
         data[i].roomname = String(data[i].roomname).replaceAll('\'', '&#x27;');
-        var template = MessageView.render(obj);
-        MessagesView.$chats.append(template);
+        var $friends = $('#friends');
+        var alreadyRendered = false;
+        console.log($friends.children().length);
+        for (var j = 0; j < $friends.children().length; j++) {
+          if (data[i].username === $friends.children()[j].textContent) {
+            var template = MessageView.renderFriend(obj);
+            MessagesView.$chats.append(template);
+            alreadyRendered = true;
+          }
+        }
+        if (!alreadyRendered) {
+          var template = MessageView.render(obj);
+          MessagesView.$chats.append(template);
+        }
       }
     });
   },
